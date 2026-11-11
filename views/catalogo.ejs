@@ -1,0 +1,22 @@
+<%- include('parciales/inicio') %>
+<form class="panel fila" action="/equipos">
+  <label>Tipo preferido<select name="tipo">
+    <option value="">Todos</option>
+    <option value="portatil" <%= tipo === 'portatil' ? 'selected' : '' %>>Portátil</option>
+    <option value="sobremesa" <%= tipo === 'sobremesa' ? 'selected' : '' %>>Sobremesa</option>
+  </select></label>
+  <label>Estado<select name="operativos">
+    <option value="">Todos</option>
+    <option value="true" <%= operativos === 'true' ? 'selected' : '' %>>Operativo</option>
+    <option value="false" <%= operativos === 'false' ? 'selected' : '' %>>Fuera de servicio</option>
+  </select></label><button>Aplicar filtros</button>
+</form>
+<% if (!equipos.length) { %><p>No hay equipos con estos filtros.</p><% } %>
+<div class="tarjetas">
+  <% for (const e of equipos) { %>
+    <article><small><%= e.codigo %></small><h2><a href="/equipos/<%= e.id %>"><%= e.nombre %></a></h2>
+      <p><%= e.tipo === 'portatil' ? 'Portátil' : 'Sobremesa' %> · <%= e.estado === 'operativo' ? 'Operativo' : 'Fuera de servicio' %></p>
+    </article>
+  <% } %>
+</div>
+<%- include('parciales/fin') %>

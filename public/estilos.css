@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; color: #192e36; background: #f6f8f7; font: 1rem/1.5 "Segoe UI", sans-serif; }
+header { background: #133d40; color: white; padding: 1rem max(5vw, calc((100vw - 68rem)/2)); }
+header, nav, .fila { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+header strong { font-size: 1.4rem; margin-right: auto; }
+header a { color: white; }
+main { max-width: 70rem; margin: 2rem auto; padding: 0 1rem; }
+h1, h2 { line-height: 1.16; }
+a { color: #125b5d; text-underline-offset: .2em; }
+form.panel, article, .tabla { background: white; border: 1px solid #c9d6d4; border-radius: .5rem; padding: 1rem; margin: 1rem 0; }
+label { display: grid; gap: .3rem; margin-bottom: .75rem; }
+input, select, button { padding: .55rem .8rem; border: 1px solid #788c8a; border-radius: .3rem; font: inherit; }
+button { color: white; background: #176160; cursor: pointer; }
+button:hover { background: #114947; }
+.panel { max-width: 40rem; }
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
+.tabla { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+td, th { text-align: left; padding: .6rem; border-bottom: 1px solid #dce4e2; }
+[role="alert"], [role="status"] { padding: .75rem 1rem; border-left: .3rem solid; }
+[role="alert"] { color: #84282a; background: #fff0ef; }
+[role="status"] { color: #175042; background: #e3f4ec; }

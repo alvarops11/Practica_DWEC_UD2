@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= titulo %> · Aula TIC</title>
+  <link rel="stylesheet" href="/public/estilos.css">
+</head>
+<body>
+<header>
+  <strong>Aula TIC</strong>
+  <nav aria-label="Principal">
+    <a href="/equipos">Equipos</a>
+    <% if (usuario) { %>
+      <a href="/reservas/nueva">Reservar</a><a href="/mis-reservas">Mis reservas</a><a href="/perfil">Perfil</a>
+      <% if (usuario.rol === 'admin') { %>
+        <a href="/admin/equipos">Inventario</a><a href="/admin/reservas">Todas las reservas</a>
+      <% } %>
+      <form method="post" action="/logout"><%- include('token') %><button>Salir</button></form>
+    <% } else { %>
+      <a href="/registro">Registro</a><a href="/login">Iniciar sesión</a>
+    <% } %>
+  </nav>
+</header>
+<main>
+  <h1><%= titulo %></h1>
+  <% if (aviso) { %><p role="status"><%= aviso %></p><% } %>
+  <% if (error) { %><p role="alert"><%= error %></p><% } %>

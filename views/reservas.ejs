@@ -1,0 +1,16 @@
+<%- include('parciales/inicio') %>
+<% if (!filas.length) { %><p>Todavía no hay reservas.</p><% } else { %>
+  <div class="tabla"><table>
+    <thead><tr><th>Equipo</th><th>Fecha</th><th>Turno</th><% if (admin) { %><th>Titular</th><% } %><th>Estado</th><th>Acciones</th></tr></thead>
+    <tbody>
+      <% for (const r of filas) { %><tr>
+        <td><%= r.equipo %></td><td><%= r.fecha %></td><td><%= r.turno === 'manana' ? 'Mañana' : 'Tarde' %></td>
+        <% if (admin) { %><td><%= r.titular %></td><% } %><td><%= r.estado %></td>
+        <td><% if (r.cancelable) { %><form method="post" action="<%= admin ? '/admin' : '' %>/reservas/<%= r.id %>/cancelar">
+          <%- include('parciales/token') %><button>Cancelar</button>
+        </form><% } %></td>
+      </tr><% } %>
+    </tbody>
+  </table></div>
+<% } %>
+<%- include('parciales/fin') %>

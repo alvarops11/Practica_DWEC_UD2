@@ -1,0 +1,6 @@
+<%- include('parciales/inicio') %>
+<article><p>Código: <%= equipo.codigo %></p><p>Tipo: <%= equipo.tipo === 'portatil' ? 'Portátil' : 'Sobremesa' %></p>
+  <p>Estado: <%= equipo.estado === 'operativo' ? 'Operativo' : 'Fuera de servicio' %></p>
+  <% if (equipo.estado === 'operativo') { %><a href="/reservas/nueva">Consultar disponibilidad por fecha y turno</a><% } %>
+</article>
+<%- include('parciales/fin') %>

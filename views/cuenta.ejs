@@ -1,0 +1,9 @@
+<%- include('parciales/inicio') %>
+<form class="panel" method="post" action="<%= registro ? '/registro' : '/login' %>">
+  <% if (registro) { %><label>Nombre<input name="nombre" value="<%= nombre %>" maxlength="80" required></label><% } %>
+  <label>Correo electrónico<input type="email" name="email" value="<%= email %>" autocomplete="email" required></label>
+  <label>Contraseña<input type="password" name="password" autocomplete="<%= registro ? 'new-password' : 'current-password' %>" required></label>
+  <% if (registro) { %><p>Usa al menos 8 caracteres y un máximo de 72 bytes.</p><% } %>
+  <button><%= registro ? 'Crear cuenta' : 'Entrar' %></button>
+</form>
+<%- include('parciales/fin') %>

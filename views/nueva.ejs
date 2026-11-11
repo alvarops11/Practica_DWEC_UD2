@@ -1,0 +1,21 @@
+<%- include('parciales/inicio') %>
+<form class="panel fila" method="get" action="/reservas/nueva">
+  <label>Fecha<input type="date" name="fecha" min="<%= hoy %>" value="<%= datos.fecha %>" required></label>
+  <label>Turno<select name="turno">
+    <option value="manana" <%= datos.turno === 'manana' ? 'selected' : '' %>>Mañana</option>
+    <option value="tarde" <%= datos.turno === 'tarde' ? 'selected' : '' %>>Tarde</option>
+  </select></label><button>Consultar disponibilidad</button>
+</form>
+<% if (disponibles.length) { %>
+  <form class="panel" method="post" action="/reservas">
+    <%- include('parciales/token') %>
+    <h2>Equipos disponibles</h2><p><%= datos.fecha %> · <%= datos.turno === 'manana' ? 'Mañana' : 'Tarde' %></p>
+    <input type="hidden" name="fecha" value="<%= datos.fecha %>"><input type="hidden" name="turno" value="<%= datos.turno %>">
+    <label>Equipo<select name="equipoId" required>
+      <% for (const e of disponibles) { %>
+        <option value="<%= e.id %>" <%= String(e.id) === datos.equipoId ? 'selected' : '' %>><%= e.codigo %> · <%= e.nombre %></option>
+      <% } %>
+    </select></label><button>Confirmar reserva</button>
+  </form>
+<% } else if (!error) { %><p>No hay equipos disponibles para esa fecha y turno.</p><% } %>
+<%- include('parciales/fin') %>

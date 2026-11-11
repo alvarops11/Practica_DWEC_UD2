@@ -1,0 +1,3 @@
+<% for (const estado of estados) { %>
+  <option value="<%= estado %>" <%= actual === estado ? 'selected' : '' %>><%= estado === 'operativo' ? 'Operativo' : 'Fuera de servicio' %></option>
+<% } %>

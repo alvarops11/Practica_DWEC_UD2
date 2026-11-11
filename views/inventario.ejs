@@ -1,0 +1,19 @@
+<%- include('parciales/inicio') %>
+<form class="panel" method="post" action="/admin/equipos">
+  <%- include('parciales/token') %><h2>Añadir equipo</h2>
+  <label>Código<input name="codigo" required maxlength="30" value="<%= datos.codigo %>"></label>
+  <label>Nombre<input name="nombre" required maxlength="80" value="<%= datos.nombre %>"></label>
+  <label>Tipo<select name="tipo"><% for (const t of tipos) { %><option value="<%= t %>" <%= datos.tipo === t ? 'selected' : '' %>><%= t === 'portatil' ? 'Portátil' : 'Sobremesa' %></option><% } %></select></label>
+  <label>Estado<select name="estado"><%- include('parciales/estados', { actual: datos.estado }) %></select></label>
+  <button>Añadir equipo</button>
+</form>
+<h2>Equipos del centro</h2>
+<div class="tarjetas"><% for (const e of equipos) { %>
+  <article><small><%= e.codigo %></small><h3><%= e.nombre %></h3>
+    <form method="post" action="/admin/equipos/<%= e.id %>/estado"><%- include('parciales/token') %>
+      <label>Estado<select name="estado"><%- include('parciales/estados', { actual: e.estado }) %></select></label>
+      <button>Guardar estado</button>
+    </form>
+  </article>
+<% } %></div>
+<%- include('parciales/fin') %>
